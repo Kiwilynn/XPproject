@@ -1,14 +1,12 @@
 package DesignProject;
 
 public class Activity {
-
     private String name;
     private String dateTime;
     private String equipment;
     private int ageRequirement;
     private int heightRequirement;
     private int participants;
-
     private Object Employee; //the  Employee object is used variable so its usable in constructor
 
     public Activity() {

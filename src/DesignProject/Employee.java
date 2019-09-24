@@ -8,6 +8,9 @@ public class Employee {
         this.name = name;
     }
 
+    public Employee() {
+    }
+
     public String getName() {
         return name;
     }
