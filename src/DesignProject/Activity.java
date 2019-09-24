@@ -95,7 +95,9 @@ public class Activity {
         this.participants = participants;
     }
 
+    //this to string method is used to see activities in our arrayList
     public String toString() {
-        return name + dateTime + equipment + ageRequirement + heightRequirement + participants + Employee;
-    }
+
+        System.out.printf("%-25s %-25s %-25s %-25d %-25d\n",name,dateTime, equipment, ageRequirement, heightRequirement);
+        return "";  }
 }
