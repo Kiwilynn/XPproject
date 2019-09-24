@@ -28,6 +28,7 @@ public class Activity {
         this.equipment = equipment;
     }
 
+
     public int getAgeRequirement() {
         return ageRequirement;
     }
