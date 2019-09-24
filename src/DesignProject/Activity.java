@@ -78,4 +78,10 @@ public class Activity {
 
     public Activity() {
     }
+
+    //this to string method is used to see activities in our arrayList
+    public String toString() {
+
+        System.out.printf("%-25s %-25s %-25s %-25d %-25d\n",name,dateTime, equipment, ageRequirement, heightRequirement);
+        return "";  }
 }

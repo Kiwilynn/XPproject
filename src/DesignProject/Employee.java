@@ -17,4 +17,9 @@ public class Employee {
 
     public Employee() {
     }
+
+    //this toString method is used in our menu to see all our employees in our array
+    public String toString(){
+        return ""+name;
+    }
 }
