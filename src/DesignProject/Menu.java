@@ -55,12 +55,13 @@ public class Menu { // This class function as a controller
 
 
     }
-
+    //Cancels a booking based on index number
     public void cancelBooking() {
         int input;
         for (int i = 0; i <activityList.size(); i++) {
             System.out.println("[" + i + "] " + activityList.get(i));
         }
+        System.out.println();
         System.out.println("Choose what activity to delete by entering number: ");
         input = scan.nextInt();
         activityList.remove(input);
