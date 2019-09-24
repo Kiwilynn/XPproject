@@ -9,7 +9,6 @@ public class Menu { // This class function as a controller
     Scanner scan = new Scanner(System.in);
 
     List<Activity> activityList = new ArrayList<>();
-    Employee em = new Employee("Torben");
 
     public void Menu() {
         activityList.add(new Activity("Gocart", "24/09-19 - 11:30","Tøj der kan tåle at blive beskidt", 14, 155));
@@ -18,17 +17,15 @@ public class Menu { // This class function as a controller
         activityList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30","Brugt tøj", 10, 160));
     }
 
-    public void menuskrivmand() {
+    public void outputList() {
         for (Object o : activityList) {
             System.out.println(o);
         }
     }
 
-    public void skriven() {
-       // activityList.set(1, ).setParticipants(5);
-    }
+    public void bookActivity(){
 
-    public void bookAktivitet(){
+        //Input info
         System.out.println("Type name of activity");
         String name = scan.nextLine();
         System.out.println("When is the booking for?");
@@ -42,13 +39,31 @@ public class Menu { // This class function as a controller
         System.out.println("How many participants?");
         int participants = scan.nextInt();
         System.out.println("Which instructor will be assigned?");
-        Object employee = scan.nextLine();
+        scan.nextLine();
+        String employee = scan.nextLine();
 
+        //Add input to arraylist as object
         activityList.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employee));
+        try {
+            System.out.println();
+            System.out.printf("Name:\t\t\t\t%s\nDate:\t\t\t\t%s\nEquiment:\t\t\t%s\nAge requirement:\t%d\nHeight requirement:\t%d\nParticipants:\t\t%d\nInstructor:\t\t\t%s", name, dateTime, equipment, ageReq, heightReq, participants, employee );
+            Thread.sleep(3000);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
 
-      //  activityList.add(new Activity("Vandski", "29/10-19 . 16:15", "Intet medbragt", 15, 165, 10, "Torben"));
 
     }
 
+    public void cancelBooking() {
+        int input;
+        for (int i = 0; i <activityList.size(); i++) {
+            System.out.println("[" + i + "] " + activityList.get(i));
+        }
+        System.out.println("Choose what activity to delete by entering number: ");
+        input = scan.nextInt();
+        activityList.remove(input);
 
+    }
 }

@@ -6,9 +6,10 @@ public class Main {
 
         Menu menu = new Menu();
 
-        menu.bookAktivitet();
-       // menu.Menu();
-        menu.menuskrivmand();
+        //menu.bookActivity();
+       menu.Menu();
+       //menu.outputList();
+       menu.cancelBooking();
 
     }
 }
