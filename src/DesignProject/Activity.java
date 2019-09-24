@@ -6,8 +6,38 @@ public class Activity {
     private String equipment;
     private int ageRequirement;
     private int heightRequirement;
-    private int participents;
+    private int participants;
     private Object Employee; //the  Employee object is used variable so its usable in constructor
+
+    public Activity() {
+    }
+
+    public Activity(String name) {
+        this.name = name;
+    }
+
+    public Activity(String name, String dateTime, String equipment, int ageRequirement, int heightRequirement) {
+        this.name = name;
+        this.dateTime = dateTime;
+        this.equipment = equipment;
+        this.ageRequirement = ageRequirement;
+        this.heightRequirement = heightRequirement;
+    }
+
+    public Activity(String name, String dateTime, String equipment, int ageRequirement, int heightRequirement, int participants, Object employee){
+        this.name = name;
+        this.dateTime = dateTime;
+        this.equipment = equipment;
+        this.ageRequirement = ageRequirement;
+        this.heightRequirement = heightRequirement;
+        this.participants = participants;
+        Employee = employee;
+    }
+
+    public Activity(String name, Object employee) {
+        this.name = name;
+        Employee = employee;
+    }
 
     public String getName() {
         return name;
@@ -27,16 +57,6 @@ public class Activity {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
-    }
-
-    public Activity(String name, String dateTime, String equipment, int ageRequirement, int heightRequirement, int participents,Object employee) {
-        this.name = name;
-        this.dateTime = dateTime;
-        this.equipment = equipment;
-        this.ageRequirement = ageRequirement;
-        this.heightRequirement = heightRequirement;
-        this.participents = participents;
-        Employee = employee;
     }
 
     public int getAgeRequirement() {
@@ -67,16 +87,16 @@ public class Activity {
         Employee = employee;
     }
 
-    public Activity(String name, Object employee) {
-        this.name = name;
-        Employee = employee;
+    public int getParticipants() {
+        return participants;
     }
 
-    public Activity(String name) {
-        this.name = name;
+    public void setParticipants(int participants) {
+        this.participants = participants;
     }
 
-    public Activity() {
+    public String toString() {
+        return name + dateTime + equipment + ageRequirement + heightRequirement + participants + Employee;
     }
 
     //this to string method is used to see activities in our arrayList
