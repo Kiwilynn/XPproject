@@ -1,7 +1,8 @@
 package DesignProject;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class Menu { // This class function as a controller
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
@@ -12,9 +13,11 @@ public class Menu { // This class function as a controller
 
     public void menuskrivmand() {
         for (Object o : activitylist) {
-            System.out.println(o);
-        }
     }
+        public void outputlist() {
+            for (Object o : activitylist) {
+                System.out.println(o);
+            }
 
     //method that adds to the activity list
     public void addToList() {
@@ -90,7 +93,18 @@ public class Menu { // This class function as a controller
 
         activitylist.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employee));
 
-        //  activityList.add(new Activity("Vandski", "29/10-19 . 16:15", "Intet medbragt", 15, 165, 10, "Torben"));
+      //  activityList.add(new Activity("Vandski", "29/10-19 . 16:15", "Intet medbragt", 15, 165, 10, "Torben"));
+
+    }
+
+    public void cancelBooking() {
+        int input;
+        for (int i = 0; i <activityList.size(); i++) {
+            System.out.println("[" + i + "] " + activityList.get(i));
+        }
+        System.out.println("Choose what activity to delete by entering number: ");
+        input = scan.nextInt();
+        activityList.remove(input);
 
     }
 }

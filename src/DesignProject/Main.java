@@ -9,9 +9,10 @@ public class Main {
         menu.menu();
         Menu menu1 = new Menu();
 
-        menu1.bookAktivitet();
-       // menu.Menu();
-        menu1.menuskrivmand();
+        //menu.bookActivity();
+       menu.Menu();
+       //menu.outputList();
+       menu.cancelBooking();
 
     }
 }
