@@ -4,7 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-//Test
+        Menu menu = new Menu();
+
+        menu.bookAktivitet();
+       // menu.Menu();
+        menu.menuskrivmand();
 
     }
 }
