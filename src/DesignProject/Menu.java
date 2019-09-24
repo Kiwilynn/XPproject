@@ -1,8 +1,6 @@
 package DesignProject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu { // This class function as a controller
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
@@ -13,11 +11,14 @@ public class Menu { // This class function as a controller
 
     public void menuskrivmand() {
         for (Object o : activitylist) {
+        }
     }
-        public void outputlist() {
-            for (Object o : activitylist) {
-                System.out.println(o);
-            }
+    public void outputlist() {
+        for (Object o : activitylist) {
+            System.out.println(o);
+        }
+    }
+
 
     //method that adds to the activity list
     public void addToList() {
@@ -33,7 +34,6 @@ public class Menu { // This class function as a controller
         employeeArray[4] = new Employee("Hanne");
 
     }
-
 
     //Menu
     public void menu() {
@@ -99,12 +99,12 @@ public class Menu { // This class function as a controller
 
     public void cancelBooking() {
         int input;
-        for (int i = 0; i <activityList.size(); i++) {
-            System.out.println("[" + i + "] " + activityList.get(i));
+        for (int i = 0; i <activitylist.size(); i++) {
+            System.out.println("[" + i + "] " + activitylist.get(i));
         }
         System.out.println("Choose what activity to delete by entering number: ");
         input = scan.nextInt();
-        activityList.remove(input);
+        activitylist.remove(input);
 
     }
 }
