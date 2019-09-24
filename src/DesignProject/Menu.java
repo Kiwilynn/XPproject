@@ -9,12 +9,6 @@ public class Menu { // This class function as a controller
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
 
-    public void Menu() {
-        activitylist.add(new Activity("Gocart", "24/09-19 - 11:30", "Tøj der kan tåle at blive beskidt", 14, 155));
-        activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "Bare det goe humør", 70, 000));
-        activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Gode sko at gå i, som må blive beskidte - Tøj der kan tåle farve", 16, 160));
-        activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Brugt tøj", 10, 160));
-    }
 
     public void menuskrivmand() {
         for (Object o : activitylist) {
@@ -22,9 +16,12 @@ public class Menu { // This class function as a controller
         }
     }
 
-
     //method that adds to the activity list
     public void addToList() {
+        activitylist.add(new Activity("Gocart", "24/09-19 - 11:30", "Tøj der kan tåle at blive beskidt", 14, 155));
+        activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "Bare det goe humør", 70, 000));
+        activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Gode sko at gå i, som må blive beskidte - Tøj der kan tåle farve", 16, 160));
+        activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Brugt tøj", 10, 160));
         activitylist.add(new Activity("Gokart", "29-09-10", "sko", 12, 150, 1, em));
         employeeArray[0] = new Employee("Lene");
         employeeArray[1] = new Employee("Kirsten");
