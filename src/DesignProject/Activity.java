@@ -6,6 +6,7 @@ public class Activity {
     private String equipment;
     private int ageRequirement;
     private int heightRequirement;
+    private int participents;
     private Object Employee; //the  Employee object is used variable so its usable in constructor
 
     public String getName() {
@@ -28,6 +29,15 @@ public class Activity {
         this.equipment = equipment;
     }
 
+    public Activity(String name, String dateTime, String equipment, int ageRequirement, int heightRequirement, int participents,Object employee) {
+        this.name = name;
+        this.dateTime = dateTime;
+        this.equipment = equipment;
+        this.ageRequirement = ageRequirement;
+        this.heightRequirement = heightRequirement;
+        this.participents = participents;
+        Employee = employee;
+    }
 
     public int getAgeRequirement() {
         return ageRequirement;
