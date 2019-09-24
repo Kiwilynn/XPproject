@@ -7,11 +7,11 @@ public class Main {
         Menu menu = new Menu();
         menu.addToList();
         menu.menu();
-        Menu menu = new Menu();
+        Menu menu1 = new Menu();
 
-        menu.bookAktivitet();
+        menu1.bookAktivitet();
        // menu.Menu();
-        menu.menuskrivmand();
+        menu1.menuskrivmand();
 
     }
 }
