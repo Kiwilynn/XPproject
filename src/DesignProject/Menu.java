@@ -9,10 +9,6 @@ public class Menu { // This class function as a controller
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
 
 
-    public void menuskrivmand() {
-        for (Object o : activitylist) {
-        }
-    }
     public void outputlist() {
         for (Object o : activitylist) {
             System.out.println(o);
@@ -83,6 +79,7 @@ public class Menu { // This class function as a controller
     }
     public void bookAktivitet () {
         System.out.println("Type name of activity");
+        scan.nextLine();
         String name = scan.nextLine();
         System.out.println("When is the booking for?");
         String dateTime = scan.nextLine();
@@ -99,8 +96,6 @@ public class Menu { // This class function as a controller
 
         activitylist.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employee));
 
-      //  activityList.add(new Activity("Vandski", "29/10-19 . 16:15", "Intet medbragt", 15, 165, 10, "Torben"));
-
     }
     //Cancels a booking based on index number
     public void cancelBooking() {
@@ -111,7 +106,10 @@ public class Menu { // This class function as a controller
         System.out.println();
         System.out.println("Choose what activity to delete by entering number: ");
         input = scan.nextInt();
+        System.out.println("This booking has been cancelled:");
+        System.out.println(activitylist.get(input) + "\n");
         activitylist.remove(input);
+
 
     }
 }
