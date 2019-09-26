@@ -22,7 +22,7 @@ public class Menu { // This class function as a controller
         activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "A good mood!", 70, 000));
         activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
         activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
-        activitylist.add(new Activity("Gokart", "29-09-10", "Shoes", 12, 150, 1, em));
+        activitylist.add(new Activity("Gokart", "29-09-10", "Shoes", 12, 15));
         employeeArray[0] = new Employee("Lene");
         employeeArray[1] = new Employee("Kirsten");
         employeeArray[2] = new Employee("Mikkel");
@@ -30,6 +30,7 @@ public class Menu { // This class function as a controller
         employeeArray[4] = new Employee("Hanne");
 
     }
+
 
     //Menu
     public void menu() {
@@ -113,6 +114,94 @@ public class Menu { // This class function as a controller
         System.out.println("This booking has been cancelled:");
         System.out.println(activitylist.get(input) + "\n");
         activitylist.remove(input);
+
+    }
+    public void editActivity() {
+
+        int input;
+        for (int i = 0; i < activitylist.size(); i++) {
+            System.out.println("[" + i + "]" + activitylist.get(i));
+        }
+        System.out.println("Choose which activity you want to edit");
+        input = scan.nextInt();
+        System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
+        System.out.println("Which element do you which to edit?");
+        System.out.println("[1] Name : " + activitylist.get(input).getName()
+                + "\n" + "[2] Equipment : " + activitylist.get(input).getEquipment()
+                + "\n" + "[3] Age : " + activitylist.get(input).getAgeRequirement()
+                + "\n" + "[4] Height : " + activitylist.get(input).getHeightRequirement()
+                + "\n");
+
+        input = scan.nextInt();
+
+        if (input == 1)
+        {
+            System.out.println("What do you wish to change the activity name to?");
+            scan.nextLine();
+            activitylist.get(input).setName(scan.nextLine());
+            System.out.println(activitylist.get(input));
+        }
+        else if (input == 2){
+            System.out.println("What do you wish to change the activity equipment requirement to?");
+            scan.nextLine();
+            activitylist.get(input).setEquipment(scan.nextLine());
+            System.out.println(activitylist.get(input));}
+
+        else if (input == 3){
+            System.out.println("What do you wish to change the activity age requirement to?");
+
+            activitylist.get(input).setAgeRequirement(scan.nextInt());
+            System.out.println(activitylist.get(input));}
+
+        else if (input == 4){
+            System.out.println("What do you wish to change the activity height requirement to?");
+
+            activitylist.get(input).setHeightRequirement(scan.nextInt());
+            System.out.println(activitylist.get(input));}
+
+    }
+    public void editBooking() {
+
+        int input;
+        for (int i = 0; i < activitylist.size(); i++) {
+            System.out.println("[" + i + "]" + activitylist.get(i));
+        }
+        System.out.println("Choose which activity you want to edit");
+        input = scan.nextInt();
+        System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
+        System.out.println("Which element do you which to edit?");
+        System.out.println("[1] Name : " + activitylist.get(input).getName()
+                + "\n" + "[2] Equipment : " + activitylist.get(input).getEquipment()
+                + "\n" + "[3] Age : " + activitylist.get(input).getAgeRequirement()
+                + "\n" + "[4] Height : " + activitylist.get(input).getHeightRequirement()
+                + "\n");
+
+        input = scan.nextInt();
+
+        if (input == 1)
+        {
+            System.out.println("What do you wish to change the activity name to?");
+            scan.nextLine();
+            activitylist.get(input).setName(scan.nextLine());
+            System.out.println(activitylist.get(input));
+        }
+        else if (input == 2){
+            System.out.println("What do you wish to change the activity equipment requirement to?");
+            scan.nextLine();
+            activitylist.get(input).setEquipment(scan.nextLine());
+            System.out.println(activitylist.get(input));}
+
+        else if (input == 3){
+            System.out.println("What do you wish to change the activity age requirement to?");
+
+            activitylist.get(input).setAgeRequirement(scan.nextInt());
+            System.out.println(activitylist.get(input));}
+
+        else if (input == 4){
+            System.out.println("What do you wish to change the activity height requirement to?");
+
+            activitylist.get(input).setHeightRequirement(scan.nextInt());
+            System.out.println(activitylist.get(input));}
 
     }
 }
