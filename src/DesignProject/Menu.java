@@ -31,6 +31,7 @@ public class Menu { // This class function as a controller
 
     }
 
+
     //Menu
     public void menu() {
         int answer;
