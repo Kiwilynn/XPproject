@@ -114,15 +114,15 @@ public class Menu { // This class function as a controller
     //Cancels a booking based on index number
     public void cancelBooking() {
         int input;
-        for (int i = 0; i <activitylist.size(); i++) {
-            System.out.println("[" + i + "] " + activitylist.get(i));
+        for (int i = 0; i <bookingList.size(); i++) {
+            System.out.println("[" + i + "] " + bookingList.get(i));
         }
         System.out.println();
         System.out.println("Choose what activity to delete by entering number: ");
         input = scan.nextInt();
         System.out.println("This booking has been cancelled:");
-        System.out.println(activitylist.get(input) + "\n");
-        activitylist.remove(input);
+        System.out.println(bookingList.get(input) + "\n");
+        bookingList.remove(input);
 
     }
 }
