@@ -111,7 +111,11 @@ public class Menu { // This class function as a controller
         System.out.println();
         System.out.println("Choose what activity to delete by entering number: ");
         input = scan.nextInt();
+        System.out.println("This booking has been canceled: ");
+        String deletedBooking;
+        deletedBooking = activitylist.get(input).toString();
         activitylist.remove(input);
+        System.out.println(deletedBooking);
 
     }
 }
