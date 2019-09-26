@@ -141,31 +141,34 @@ public class Menu { // This class function as a controller
                 + "\n" + "[4] Height : " + activitylist.get(input).getHeightRequirement()
                 + "\n");
 
-        input = scan.nextInt();
+        int input2= 0;
+        input2 = scan.nextInt();
 
-        if (input == 1)
+        if (input2 == 1)
         {
             System.out.println("What do you wish to change the activity name to?");
             scan.nextLine();
             activitylist.get(input).setName(scan.nextLine());
             System.out.println(activitylist.get(input));
         }
-        else if (input == 2){
+        else if (input2 == 2){
             System.out.println("What do you wish to change the activity equipment requirement to?");
             scan.nextLine();
             activitylist.get(input).setEquipment(scan.nextLine());
             System.out.println(activitylist.get(input));}
 
-        else if (input == 3){
+        else if (input2 == 3){
             System.out.println("What do you wish to change the activity age requirement to?");
 
             activitylist.get(input).setAgeRequirement(scan.nextInt());
+            scan.nextLine();
             System.out.println(activitylist.get(input));}
 
-        else if (input == 4){
+        else if (input2 == 4){
             System.out.println("What do you wish to change the activity height requirement to?");
 
             activitylist.get(input).setHeightRequirement(scan.nextInt());
+            scan.nextLine();
             System.out.println(activitylist.get(input));}
 
     }
