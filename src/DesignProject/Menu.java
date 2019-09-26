@@ -6,11 +6,18 @@ public class Menu { // This class function as a controller
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
     Employee em = new Employee("Torben");
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
+    List<Activity> bookingList = new ArrayList<Activity>(); // Activity list
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
 
 
-    public void outputlist() {
+    public void outputActivity() {
         for (Object o : activitylist) {
+            System.out.println(o);
+        }
+    }
+
+    public void outputBooking() {
+        for (Object o : bookingList) {
             System.out.println(o);
         }
     }
@@ -31,7 +38,6 @@ public class Menu { // This class function as a controller
 
     }
 
-
     //Menu
     public void menu() {
         int answer;
@@ -42,8 +48,8 @@ public class Menu { // This class function as a controller
                 answer = scan.nextInt();
                 while (true) {
                     if (answer == 1) {
-                        System.out.printf("\t  %-25s %-25s %-25s %-25s %-25s", "Name", "Date", "Equipment", "Age requirement", "Height requirement\n");
-                        System.out.println(activitylist.get(0));
+                        System.out.printf("%-25s %-25s %-25s %-25s %-25s", "Name", "Date", "Equipment", "Age requirement", "Height requirement\n");
+                        outputActivity();
                         break;
                     }
                     if (answer == 2) {
@@ -59,8 +65,11 @@ public class Menu { // This class function as a controller
                         System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 for cancel a booking");
                         answer = scan.nextInt();
 
-                        if(answer == 1){bookAktivitet();}
-                        else if (answer == 2){outputlist();}
+                        if(answer == 1){bookActivity();}
+                        else if (answer == 2){
+                            System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s", "Name", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
+                            outputBooking();
+                        }
                         else if (answer == 3){cancelBooking();}
                         else {break;}
                         break;
@@ -79,7 +88,7 @@ public class Menu { // This class function as a controller
 
     }
     //Adds a new activity, based on following input, to the already existing list of activities
-    public void bookAktivitet () {
+    public void bookActivity () {
         System.out.println("Type name of activity");
         scan.nextLine();
         String name = scan.nextLine();
@@ -94,26 +103,26 @@ public class Menu { // This class function as a controller
         System.out.println("How many participants?");
         int participants = scan.nextInt();
         System.out.println("Which instructor will be assigned?");
-        for (int i = 0; i < employeeArray.length; i++) {
-            System.out.println("[" + i + "] " + employeeArray[i]);
-        }
+       for (int i = 0; i < employeeArray.length; i++){
+           System.out.println("[" + i + "] " + employeeArray[i]);
+       }
         int input = scan.nextInt();
 
-        activitylist.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employeeArray[input]));
+        bookingList.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employeeArray[input]));
 
     }
     //Cancels a booking based on index number
     public void cancelBooking() {
         int input;
-        for (int i = 0; i <activitylist.size(); i++) {
-            System.out.println("[" + i + "] " + activitylist.get(i));
+        for (int i = 0; i <bookingList.size(); i++) {
+            System.out.println("[" + i + "] " + bookingList.get(i));
         }
         System.out.println();
         System.out.println("Choose what activity to delete by entering number: ");
         input = scan.nextInt();
         System.out.println("This booking has been cancelled:");
-        System.out.println(activitylist.get(input) + "\n");
-        activitylist.remove(input);
+        System.out.println(bookingList.get(input) + "\n");
+        bookingList.remove(input);
 
     }
     public void editActivity() {
