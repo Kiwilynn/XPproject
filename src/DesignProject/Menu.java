@@ -93,9 +93,12 @@ public class Menu { // This class function as a controller
         System.out.println("How many participants?");
         int participants = scan.nextInt();
         System.out.println("Which instructor will be assigned?");
-        Object employee = scan.nextLine();
+        for (int i = 0; i < employeeArray.length; i++) {
+            System.out.println("[" + i + "] " + employeeArray[i]);
+        }
+        int input = scan.nextInt();
 
-        activitylist.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employee));
+        activitylist.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employeeArray[input]));
 
     }
     //Cancels a booking based on index number
