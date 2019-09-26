@@ -31,7 +31,6 @@ public class Menu { // This class function as a controller
 
     }
 
-
     //Menu
     public void menu() {
         int answer;
@@ -78,6 +77,7 @@ public class Menu { // This class function as a controller
         }
 
     }
+    //Adds a new activity, based on following input, to the already existing list of activities
     public void bookAktivitet () {
         System.out.println("Type name of activity");
         scan.nextLine();
@@ -113,7 +113,6 @@ public class Menu { // This class function as a controller
         System.out.println("This booking has been cancelled:");
         System.out.println(activitylist.get(input) + "\n");
         activitylist.remove(input);
-
 
     }
 }
