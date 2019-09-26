@@ -7,10 +7,10 @@ public class Main {
         Menu menu = new Menu();
         menu.addToList();
         menu.menu();
-        Menu menu1 = new Menu();
-        //menu.bookActivity();
-        //menu.outputList();
-        //menu.cancelBooking();
 
+        /*menu.bookAktivitet();
+        menu.outputlist();
+        menu.cancelBooking();
+*/
     }
 }

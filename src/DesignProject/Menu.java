@@ -22,11 +22,11 @@ public class Menu { // This class function as a controller
 
     //method that adds to the activity list
     public void addToList() {
-        activitylist.add(new Activity("Gocart", "24/09-19 - 11:30", "Tøj der kan tåle at blive beskidt", 14, 155));
-        activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "Bare det goe humør", 70, 000));
-        activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Gode sko at gå i, som må blive beskidte - Tøj der kan tåle farve", 16, 160));
-        activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Brugt tøj", 10, 160));
-        activitylist.add(new Activity("Gokart", "29-09-10", "sko", 12, 150, 1, em));
+        activitylist.add(new Activity("Gocart", "24/09-19 - 11:30", "No equipment required", 14, 155));
+        activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "A good mood!", 70, 000));
+        activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
+        activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
+        activitylist.add(new Activity("Gokart", "29-09-10", "Shoes", 12, 150, 1, em));
         employeeArray[0] = new Employee("Lene");
         employeeArray[1] = new Employee("Kirsten");
         employeeArray[2] = new Employee("Mikkel");
@@ -59,7 +59,13 @@ public class Menu { // This class function as a controller
 
                     }
                     if (answer == 3) {
-                        System.out.println("List of Bookings");
+                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 for cancel a booking");
+                        answer = scan.nextInt();
+
+                        if(answer == 1){bookAktivitet();}
+                        else if (answer == 2){outputlist();}
+                        else if (answer == 3){cancelBooking();}
+                        else {break;}
                         break;
                     } else {
                         menu();
