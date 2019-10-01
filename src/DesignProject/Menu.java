@@ -187,7 +187,7 @@ public class Menu { // This class function as a controller
 
 
         int input;
-        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor");
+        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
 
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
@@ -255,8 +255,9 @@ public class Menu { // This class function as a controller
                 System.out.printf("%-25s %s", "Name:" , "Date:\n");
                 System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime());
                 System.out.println();
+                break;
             } else {
-                System.out.println(input + " har ikke nogen bookninger.");
+                System.out.println(input + " doesn't have any bookings.");
                 searchByInstructor();
             }
         }

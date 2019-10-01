@@ -6,10 +6,9 @@ public class Main {
 
         Menu menu = new Menu();
         menu.addToList();
-        //menu.menu();
+        menu.menu();
 
-        //menu.editActivity();
-        menu.editBooking();
+
         /*menu.bookAktivitet();
         menu.outputlist();
         menu.cancelBooking();
