@@ -25,16 +25,19 @@ public class Menu { // This class function as a controller
 
     //method that adds to the activity list
     public void addToList() {
-        activitylist.add(new Activity("Gocart", "24/09-19 - 11:30", "No equipment required", 14, 155));
-        activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "A good mood!", 70, 000));
-        activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
-        activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
-        activitylist.add(new Activity("Gokart", "29-09-10", "Shoes", 12, 15));
+
         employeeArray[0] = new Employee("Lene");
         employeeArray[1] = new Employee("Kirsten");
         employeeArray[2] = new Employee("Mikkel");
         employeeArray[3] = new Employee("Jesper");
         employeeArray[4] = new Employee("Hanne");
+        activitylist.add(new Activity("Gocart", "24/09-19 - 11:30", "No equipment required", 14, 155));
+        activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "A good mood!", 70, 000));
+        activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
+        activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 5, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 2, employeeArray[1]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[4]));
 
     }
 
@@ -67,7 +70,7 @@ public class Menu { // This class function as a controller
 
                         if(answer == 1){bookActivity();}
                         else if (answer == 2){
-                            System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s", "Name", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
+                            System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
                             outputBooking();
                         }
                         else if (answer == 3){cancelBooking();}
@@ -131,8 +134,11 @@ public class Menu { // This class function as a controller
         for (int i = 0; i < activitylist.size(); i++) {
             System.out.println("[" + i + "]" + activitylist.get(i));
         }
+
         System.out.println("Choose which activity you want to edit");
         input = scan.nextInt();
+
+
         System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
         System.out.println("Which element do you which to edit?");
         System.out.println("[1] Name : " + activitylist.get(input).getName()
@@ -174,46 +180,60 @@ public class Menu { // This class function as a controller
     }
     public void editBooking() {
 
+
+
         int input;
-        for (int i = 0; i < activitylist.size(); i++) {
-            System.out.println("[" + i + "]" + activitylist.get(i));
+        for (int i = 0; i < bookingList.size(); i++) {
+            System.out.println("[" + i + "]" + bookingList.get(i));
         }
-        System.out.println("Choose which activity you want to edit");
+
+        System.out.println("Choose which booking you want to edit");
         input = scan.nextInt();
-        System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
+
+
+        System.out.println("You have chosen to edit : " + bookingList.get(input).getName());
         System.out.println("Which element do you which to edit?");
-        System.out.println("[1] Name : " + activitylist.get(input).getName()
-                + "\n" + "[2] Equipment : " + activitylist.get(input).getEquipment()
-                + "\n" + "[3] Age : " + activitylist.get(input).getAgeRequirement()
-                + "\n" + "[4] Height : " + activitylist.get(input).getHeightRequirement()
+        System.out.println("[1] Instructor : " + bookingList.get(input).getEmployee()
+                + "\n" + "[2] Participants : " + bookingList.get(input).getParticipants()
+                + "\n" + "[3] Date & time : " + bookingList.get(input).getDateTime()
                 + "\n");
 
-        input = scan.nextInt();
+        int input2= 0;
+        input2 = scan.nextInt();
 
-        if (input == 1)
-        {
-            System.out.println("What do you wish to change the activity name to?");
+        if (input2 == 1) {
+
+            int input3 = 0;
+
+            System.out.println("Which instructor do you wish to assign this booking?");
+
+            for(int i = 0; i < employeeArray.length; i++){
+                System.out.println("[" + i + "]" + employeeArray[i]);
+            }
+
+            System.out.println("Which instructor do you wish to switch to?");
+            input3 = scan.nextInt();
+
+            bookingList.get(input).setEmployee(employeeArray[input3]);
+            System.out.println();
             scan.nextLine();
-            activitylist.get(input).setName(scan.nextLine());
-            System.out.println(activitylist.get(input));
+
         }
-        else if (input == 2){
-            System.out.println("What do you wish to change the activity equipment requirement to?");
+
+        else if (input2 == 2){
+            System.out.println("How many participants do you wish to change to?");
             scan.nextLine();
-            activitylist.get(input).setEquipment(scan.nextLine());
-            System.out.println(activitylist.get(input));}
+            bookingList.get(input).setParticipants(scan.nextInt());
+            System.out.println(bookingList.get(input));
+            scan.nextLine();
+        }
 
-        else if (input == 3){
-            System.out.println("What do you wish to change the activity age requirement to?");
+        else if (input2 == 3){
+            System.out.println("What date and time do you wish to change to?");
+            scan.nextLine();
+            bookingList.get(input).setDateTime(scan.nextLine());
+            System.out.println(bookingList.get(input));
 
-            activitylist.get(input).setAgeRequirement(scan.nextInt());
-            System.out.println(activitylist.get(input));}
-
-        else if (input == 4){
-            System.out.println("What do you wish to change the activity height requirement to?");
-
-            activitylist.get(input).setHeightRequirement(scan.nextInt());
-            System.out.println(activitylist.get(input));}
-
+            }
     }
 }
