@@ -98,6 +98,7 @@ public class Activity {
     //this to string method is used to see activities in our arrayList
     public String toString() {
         //To string that's used if the Employee object ain't null
+
         if (getEmployee() != null){
             System.out.printf("%-25s %-25s %-25s %-25d %-25d %-25d %-25s \n",name, dateTime, equipment, ageRequirement, heightRequirement, participants, getEmployee());
             return "";

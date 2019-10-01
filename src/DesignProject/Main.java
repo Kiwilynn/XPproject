@@ -8,7 +8,8 @@ public class Main {
         menu.addToList();
         //menu.menu();
 
-        menu.editActivity();
+        //menu.editActivity();
+        menu.editBooking();
         /*menu.bookAktivitet();
         menu.outputlist();
         menu.cancelBooking();
