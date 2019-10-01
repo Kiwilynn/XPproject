@@ -101,6 +101,7 @@ public class Menu { // This class function as a controller
         activitylist.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employeeArray[input]));
 
     }
+
     //Cancels a booking based on index number
     public void cancelBooking() {
         int input;
@@ -115,4 +116,19 @@ public class Menu { // This class function as a controller
         activitylist.remove(input);
 
     }
+
+    public void searchByInstructor() {
+        int input;
+        System.out.println("Which instructor would you like to see the current bookings for?");
+        for (int i = 0; i <bookingList i++) {
+            System.out.println("[" + i + "]" + activitylist.get(i));
+        }
+        System.out.println();
+        input = scan.nextInt();
+        for (int i = 0; i < activitylist.size(); i++) {
+            System.out.println(employeeArray[i].getName());
+        }
+
+    }
+
 }
