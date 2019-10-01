@@ -130,6 +130,8 @@ public class Menu { // This class function as a controller
     }
     public void editActivity() {
 
+        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor");
+
         int input;
         for (int i = 0; i < activitylist.size(); i++) {
             System.out.println("[" + i + "]" + activitylist.get(i));
@@ -183,6 +185,8 @@ public class Menu { // This class function as a controller
 
 
         int input;
+        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor");
+
         for (int i = 0; i < bookingList.size(); i++) {
             System.out.println("[" + i + "]" + bookingList.get(i));
         }
@@ -211,7 +215,6 @@ public class Menu { // This class function as a controller
                 System.out.println("[" + i + "]" + employeeArray[i]);
             }
 
-            System.out.println("Which instructor do you wish to switch to?");
             input3 = scan.nextInt();
 
             bookingList.get(input).setEmployee(employeeArray[input3]);
