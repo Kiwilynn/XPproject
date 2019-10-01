@@ -130,7 +130,7 @@ public class Menu { // This class function as a controller
     }
     public void editActivity() {
 
-        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor");
+        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
 
         int input;
         for (int i = 0; i < activitylist.size(); i++) {
