@@ -35,12 +35,12 @@ public class Menu { // This class function as a controller
         activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "A good mood!", 70, 000));
         activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
         activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 5, employeeArray[0]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 2, employeeArray[1]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 5, employeeArray[0]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 2, employeeArray[1]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
 
     }
 
@@ -50,7 +50,7 @@ public class Menu { // This class function as a controller
 
         try {
             while (true) {
-                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \n");
+                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \nPress 4 for calendar");
                 answer = scan.nextInt();
                 while (true) {
                     if (answer == 1) {
@@ -58,7 +58,7 @@ public class Menu { // This class function as a controller
                         outputActivity();
                         break;
                     }
-                    if (answer == 2) {
+                    else if (answer == 2) {
                         System.out.println("List of Employees");
                         for (int e = 0; e <= employeeArray.length - 1; e++) {
                             System.out.println(employeeArray[e]);
@@ -67,7 +67,8 @@ public class Menu { // This class function as a controller
                         break;
 
                     }
-                    if (answer == 3) {
+                    else if (answer == 3) {
+
                         System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking");
                         answer = scan.nextInt();
 
@@ -82,8 +83,13 @@ public class Menu { // This class function as a controller
                         else if (answer == 4) {cancelBooking();}
                         else if (answer == 5) {editBooking();}
                         else {break;}
-                        break;
-                    } else {
+                        break; }
+
+
+                    else if (answer == 4){
+                        answer = 0;
+                        searchByDate();
+                    }else {
                         menu();
                     }
                 }
@@ -267,6 +273,8 @@ public class Menu { // This class function as a controller
         }
 
 
+
+
         /*for (int i = 0; i < employeeArray.length; i++){
             System.out.println("[" + i + "] " + employeeArray[i]);
         }*/
@@ -291,6 +299,66 @@ public class Menu { // This class function as a controller
                 searchByInstructor();
             }
         }*/
+    }
+
+    public void searchByDate(){
+        System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year");
+
+        int input = 0;
+        input = scan.nextInt();
+        scan.nextLine();
+
+        if (input == 1){
+            System.out.println("Enter date (DD/MM/YYYY");
+
+            String stringA= null; //saves the input information so that its possible to compare
+            stringA=scan.nextLine();
+
+
+            System.out.println("---------------------------- Calendar Date" + " " + stringA + " ----------------------------");
+            for (int i = 0; i < bookingList.size(); i++){
+
+                if (stringA.equalsIgnoreCase(bookingList.get(i).getDateTime())){
+                    System.out.println(bookingList.get(i));
+                }
+
+            }
+        }
+
+        else if (input==2){
+
+            System.out.println("Enter month (MM)");
+
+            String answer = null;
+            answer = scan.nextLine();
+
+            System.out.println("---------------------------- Calendar month" + " " + answer + " ----------------------------");
+            for (int i = 0; i < bookingList.size(); i++){
+
+                String Temp1 = bookingList.get(i).getDateTime().substring(3, 5);
+
+                if (answer.equals(Temp1)){
+                    System.out.println(bookingList.get(i));
+                }
+            }
+        }
+        else if (input==3){
+            System.out.println("Enter year (YYYY)");
+
+            String answer = null;
+            answer = scan.nextLine();
+
+            System.out.println("---------------------------- Calendar year" + " " + answer + " ----------------------------");
+            for (int i = 0; i < bookingList.size(); i++){
+
+                String Temp1 = bookingList.get(i).getDateTime().substring(6, 10);
+
+                if (answer.equals(Temp1)){
+                    System.out.println(bookingList.get(i));
+
+                }
+            }
+        }
     }
 
 }
