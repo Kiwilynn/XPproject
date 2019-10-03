@@ -36,8 +36,8 @@ public class Menu { // This class function as a controller
         activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
         activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
         bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 5, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 2, employeeArray[1]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[4]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 15:30", "Used clothes", 10, 160, 2, employeeArray[1]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 16:30", "Used clothes", 10, 160, 1500, employeeArray[4]));
 
     }
 
@@ -243,7 +243,7 @@ public class Menu { // This class function as a controller
     }
 
     public void searchByInstructor() {
-        String input = null;
+        String input = "null";
         System.out.println("Which instructor would you like to see the current bookings for?");
         for (int i = 0; i < employeeArray.length; i++){
             System.out.println("[" + i + "] " + employeeArray[i]);
@@ -251,14 +251,16 @@ public class Menu { // This class function as a controller
         System.out.println();
         input = scan.next();
         for (int i = 0; i < bookingList.size(); i++) {
-            if(bookingList.get(i).getEmployee().toString().equalsIgnoreCase(input)) {
+            System.out.println(i + "igennem for loopet");
+            if(input.equalsIgnoreCase((bookingList.get(i).getEmployee().toString()))) {
+                System.out.println(i);
                 System.out.printf("%-25s %s", "Name:" , "Date:\n");
                 System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime());
                 System.out.println();
                 break;
             } else {
                 System.out.println(input + " doesn't have any bookings.");
-                searchByInstructor();
+
             }
         }
     }
