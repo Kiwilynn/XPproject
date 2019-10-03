@@ -22,8 +22,7 @@ public class Menu { // This class function as a controller
         }
     }
 
-
-    //method that adds to the activity list
+    //method that adds employees, aswell as dummy activities and bookings.
     public void addToList() {
 
         employeeArray[0] = new Employee("Lene");
@@ -50,7 +49,7 @@ public class Menu { // This class function as a controller
 
         try {
             while (true) {
-                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \nPress 4 for calendar");
+                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \nPress 4 for calendar\n\nPRESS 9 TO EXIT PROGRAM\n");
                 answer = scan.nextInt();
                 while (true) {
                     if (answer == 1) {
@@ -69,7 +68,7 @@ public class Menu { // This class function as a controller
                     }
                     else if (answer == 3) {
 
-                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking");
+                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking\n\nPRESS 9 TO EXIT PROGRAM\n");
                         answer = scan.nextInt();
 
                         if(answer == 1){bookActivity();}
@@ -82,16 +81,23 @@ public class Menu { // This class function as a controller
                             searchByInstructor();}
                         else if (answer == 4) {cancelBooking();}
                         else if (answer == 5) {editBooking();}
+                        else if (answer == 9) {
+                            System.exit(1);
+                        }
                         else {break;}
-                        break; }
-
-
+                        break;
+                    }
                     else if (answer == 4){
                         answer = 0;
                         searchByDate();
-                    }else {
-                        menu();
                     }
+
+                    else if (answer == 9) {
+                        System.exit(1);
+                    } else {
+                        break; }
+
+
                 }
 
             }
@@ -142,6 +148,7 @@ public class Menu { // This class function as a controller
         bookingList.remove(input);
 
     }
+    //Edits an existing activity
     public void editActivity() {
 
         System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
@@ -154,7 +161,7 @@ public class Menu { // This class function as a controller
         System.out.println("Choose which activity you want to edit");
         input = scan.nextInt();
 
-
+        //Shows menu for edit options
         System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
         System.out.println("Which element do you which to edit?");
         System.out.println("[1] Name : " + activitylist.get(input).getName()
@@ -194,6 +201,7 @@ public class Menu { // This class function as a controller
             System.out.println(activitylist.get(input));}
 
     }
+    //Edits an existing booking
     public void editBooking() {
 
 
@@ -208,7 +216,7 @@ public class Menu { // This class function as a controller
         System.out.println("Choose which booking you want to edit");
         input = scan.nextInt();
 
-
+        //Shows menu for edit options
         System.out.println("You have chosen to edit : " + bookingList.get(input).getName());
         System.out.println("Which element do you which to edit?");
         System.out.println("[1] Instructor : " + bookingList.get(input).getEmployee()
@@ -216,7 +224,7 @@ public class Menu { // This class function as a controller
                 + "\n" + "[3] Date & time : " + bookingList.get(input).getDateTime()
                 + "\n");
 
-        int input2= 0;
+        int input2 = 0;
         input2 = scan.nextInt();
 
         if (input2 == 1) {
@@ -253,54 +261,25 @@ public class Menu { // This class function as a controller
 
             }
     }
-
+    //Method for searching by instructor, and view their bookings
     public void searchByInstructor() {
-
 
         System.out.println("Which instructor would you like to see the current bookings for?");
         String tempAnswer = null;
 
         tempAnswer = scan.nextLine();
 
-
-
+        //Loops through the bookingList
         for (int i = 0; i < bookingList.size(); i++){
-
+            //Executes if conditions are fulfilled
             if (tempAnswer.equalsIgnoreCase(bookingList.get(i).getEmployee().toString())){
-                System.out.println(bookingList.get(i));
+                System.out.printf("%-25s %s", "Name:" , "Date:\n");
+                System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime()+ "\n");
             }
 
         }
 
-
-
-
-        /*for (int i = 0; i < employeeArray.length; i++){
-            System.out.println("[" + i + "] " + employeeArray[i]);
-        }*/
-
-        /*for(Object employee: bookingList){
-            System.out.println(employee.toString());
-        }*/
-
-        /*for (int i = 0; i < bookingList.size(); i++) {
-
-
-            System.out.println(bookingList.get(i).getEmployee().toString());
-
-            if(bookingList.get(i).getEmployee().toString().equalsIgnoreCase(input)) {
-                System.out.printf("%-25s %s", "Name:" , "Date:\n");
-                System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime());
-                System.out.println();
-                System.out.println();
-                break;
-            } else {
-                System.out.println(input + " doesn't have any bookings.");
-                searchByInstructor();
-            }
-        }*/
     }
-
     public void searchByDate(){
         System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year");
 
