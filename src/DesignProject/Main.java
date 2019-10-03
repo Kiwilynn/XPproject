@@ -6,6 +6,8 @@ public class Main {
 
         Menu menu = new Menu();
         menu.addToList();
+
+        //menu.searchByInstructor();
         menu.menu();
 
 
