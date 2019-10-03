@@ -50,7 +50,7 @@ public class Menu { // This class function as a controller
 
         try {
             while (true) {
-                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \n");
+                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings\n\nPRESS 9 TO EXIT PROGRAM\n");
                 answer = scan.nextInt();
                 while (true) {
                     if (answer == 1) {
@@ -58,7 +58,7 @@ public class Menu { // This class function as a controller
                         outputActivity();
                         break;
                     }
-                    if (answer == 2) {
+                    else if (answer == 2) {
                         System.out.println("List of Employees");
                         for (int e = 0; e <= employeeArray.length - 1; e++) {
                             System.out.println(employeeArray[e]);
@@ -67,8 +67,8 @@ public class Menu { // This class function as a controller
                         break;
 
                     }
-                    if (answer == 3) {
-                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking");
+                    else if (answer == 3) {
+                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking\n\nPRESS 9 TO EXIT PROGRAM\n");
                         answer = scan.nextInt();
 
                         if(answer == 1){bookActivity();}
@@ -81,8 +81,13 @@ public class Menu { // This class function as a controller
                             searchByInstructor();}
                         else if (answer == 4) {cancelBooking();}
                         else if (answer == 5) {editBooking();}
+                        else if (answer == 9) {
+                            System.exit(1);
+                        }
                         else {break;}
                         break;
+                    } else if (answer == 9) {
+                        System.exit(1);
                     } else {
                         menu();
                     }
@@ -210,7 +215,7 @@ public class Menu { // This class function as a controller
                 + "\n" + "[3] Date & time : " + bookingList.get(input).getDateTime()
                 + "\n");
 
-        int input2= 0;
+        int input2 = 0;
         input2 = scan.nextInt();
 
         if (input2 == 1) {
@@ -261,7 +266,8 @@ public class Menu { // This class function as a controller
         for (int i = 0; i < bookingList.size(); i++){
 
             if (tempAnswer.equalsIgnoreCase(bookingList.get(i).getEmployee().toString())){
-                System.out.println(bookingList.get(i));
+                System.out.printf("%-25s %s", "Name:" , "Date:\n");
+                System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime());
             }
 
         }
