@@ -22,8 +22,7 @@ public class Menu { // This class function as a controller
         }
     }
 
-
-    //method that adds to the activity list
+    //method that adds employees, aswell as dummy activities and bookings.
     public void addToList() {
 
         employeeArray[0] = new Employee("Lene");
@@ -43,7 +42,6 @@ public class Menu { // This class function as a controller
         bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
 
     }
-
     //Menu
     public void menu() {
         int answer;
@@ -90,10 +88,8 @@ public class Menu { // This class function as a controller
 
             }
         } catch (InputMismatchException g) {
-
             scan.nextLine();
             menu();
-
         }
 
     }
@@ -136,6 +132,7 @@ public class Menu { // This class function as a controller
         bookingList.remove(input);
 
     }
+    //Edits an existing activity
     public void editActivity() {
 
         System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
@@ -148,7 +145,7 @@ public class Menu { // This class function as a controller
         System.out.println("Choose which activity you want to edit");
         input = scan.nextInt();
 
-
+        //Shows menu for edit options
         System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
         System.out.println("Which element do you which to edit?");
         System.out.println("[1] Name : " + activitylist.get(input).getName()
@@ -188,9 +185,8 @@ public class Menu { // This class function as a controller
             System.out.println(activitylist.get(input));}
 
     }
+    //Edits an existing booking
     public void editBooking() {
-
-
 
         int input;
         System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
@@ -202,7 +198,7 @@ public class Menu { // This class function as a controller
         System.out.println("Choose which booking you want to edit");
         input = scan.nextInt();
 
-
+        //Shows menu for edit options
         System.out.println("You have chosen to edit : " + bookingList.get(input).getName());
         System.out.println("Which element do you which to edit?");
         System.out.println("[1] Instructor : " + bookingList.get(input).getEmployee()
@@ -247,50 +243,24 @@ public class Menu { // This class function as a controller
 
             }
     }
-
+    //Method for searching by instructor, and view their bookings
     public void searchByInstructor() {
-
 
         System.out.println("Which instructor would you like to see the current bookings for?");
         String tempAnswer = null;
 
         tempAnswer = scan.nextLine();
 
-
-
+        //Loops through the bookingList
         for (int i = 0; i < bookingList.size(); i++){
-
+            //Executes if conditions are fulfilled
             if (tempAnswer.equalsIgnoreCase(bookingList.get(i).getEmployee().toString())){
-                System.out.println(bookingList.get(i));
+                System.out.printf("%-25s %s", "Name:" , "Date:\n");
+                System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime()+ "\n");
             }
 
         }
 
-
-        /*for (int i = 0; i < employeeArray.length; i++){
-            System.out.println("[" + i + "] " + employeeArray[i]);
-        }*/
-
-        /*for(Object employee: bookingList){
-            System.out.println(employee.toString());
-        }*/
-
-        /*for (int i = 0; i < bookingList.size(); i++) {
-
-
-            System.out.println(bookingList.get(i).getEmployee().toString());
-
-            if(bookingList.get(i).getEmployee().toString().equalsIgnoreCase(input)) {
-                System.out.printf("%-25s %s", "Name:" , "Date:\n");
-                System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime());
-                System.out.println();
-                System.out.println();
-                break;
-            } else {
-                System.out.println(input + " doesn't have any bookings.");
-                searchByInstructor();
-            }
-        }*/
     }
 
 }
