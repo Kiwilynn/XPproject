@@ -65,7 +65,7 @@ public class Menu { // This class function as a controller
 
                     }
                     if (answer == 3) {
-                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 for cancel a booking");
+                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking");
                         answer = scan.nextInt();
 
                         if(answer == 1){bookActivity();}
@@ -73,7 +73,8 @@ public class Menu { // This class function as a controller
                             System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
                             outputBooking();
                         }
-                        else if (answer == 3){cancelBooking();}
+                        else if (answer == 3){searchByInstructor();}
+                        else if (answer == 4) {cancelBooking();}
                         else {break;}
                         break;
                     } else {
@@ -114,6 +115,7 @@ public class Menu { // This class function as a controller
         bookingList.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employeeArray[input]));
 
     }
+
     //Cancels a booking based on index number
     public void cancelBooking() {
         int input;
@@ -239,4 +241,26 @@ public class Menu { // This class function as a controller
 
             }
     }
+
+    public void searchByInstructor() {
+        String input = null;
+        System.out.println("Which instructor would you like to see the current bookings for?");
+        for (int i = 0; i < employeeArray.length; i++){
+            System.out.println("[" + i + "] " + employeeArray[i]);
+        }
+        System.out.println();
+        input = scan.next();
+        for (int i = 0; i < bookingList.size(); i++) {
+            if(bookingList.get(i).getEmployee().toString().equalsIgnoreCase(input)) {
+                System.out.printf("%-25s %s", "Name:" , "Date:\n");
+                System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime());
+                System.out.println();
+                break;
+            } else {
+                System.out.println(input + " doesn't have any bookings.");
+                searchByInstructor();
+            }
+        }
+    }
+
 }
