@@ -2,7 +2,7 @@ package DesignProject;
 
 import java.util.*;
 
-public class Menu { // This class function as a controller
+public class Menu { // This class function as a controller.
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
     Employee em = new Employee("Torben");
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
