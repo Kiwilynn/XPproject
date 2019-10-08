@@ -52,8 +52,7 @@ public class Menu { // This class function as a controller
                 answer = scan.nextInt();
                 while (true) {
                     if (answer == 1) {
-                        System.out.printf("%-25s %-25s %-25s %-25s %-25s", "Name", "Date", "Equipment", "Age requirement", "Height requirement\n");
-                        outputActivity();
+                        activityMenu();
                         break;
                     }
                     else if (answer == 2) {
@@ -89,22 +88,22 @@ public class Menu { // This class function as a controller
         System.out.println("Type name of activity");
         scan.nextLine();
         String name = scan.nextLine();
-        previousMenu(name);
+        previousBooking(name);
         System.out.println("When is the booking for? (YYYY)");
         String dateTime = scan.nextLine();
-        previousMenu(dateTime);
+        previousBooking(dateTime);
         System.out.println("What equipment is needed to bring?");
         String equipment = scan.nextLine();
-        previousMenu(equipment);
+        previousBooking(equipment);
         System.out.println("What is the age req?");
         String ageReq = scan.nextLine();
-        previousMenu(ageReq);
+        previousBooking(ageReq);
         System.out.println("What is the height req?");
         String heightReq = scan.nextLine();
-        previousMenu(heightReq);
+        previousBooking(heightReq);
         System.out.println("How many participants?");
         String participants = scan.nextLine();
-        previousMenu(participants);
+        previousBooking(participants);
         System.out.println("Which instructor will be assigned?");
        for (int i = 0; i < employeeArray.length; i++){
            System.out.println("[" + i + "] " + employeeArray[i]);
@@ -129,7 +128,7 @@ public class Menu { // This class function as a controller
         System.out.println("Choose what activity to delete by entering number: ");
         scan.nextLine();
         input = scan.nextLine();
-        previousMenu(input);
+        previousBooking(input);
         System.out.println("This booking has been cancelled:");
 
         //Checks string input, to make sure it's not equal to 'Back'
@@ -142,55 +141,79 @@ public class Menu { // This class function as a controller
     }
     //Edits an existing activity
     public void editActivity() {
-
+        String input;
         System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
 
-        int input;
         for (int i = 0; i < activitylist.size(); i++) {
             System.out.println("[" + i + "]" + activitylist.get(i));
         }
 
         System.out.println("Choose which activity you want to edit");
-        input = scan.nextInt();
+        if (isEditBackTriggered == false){
+            scan.nextLine();
+        }
+        isEditBackTriggered = false;
+        input = scan.nextLine();
+        int intInput = 0;
+        previousActivity(input);
+        if (!input.equalsIgnoreCase("Back")){
+            intInput = Integer.parseInt(input);
+        }
 
         //Shows menu for edit options
-        System.out.println("You have chosen to edit : " + activitylist.get(input).getName());
+        System.out.println("You have chosen to edit : " + activitylist.get(intInput).getName());
         System.out.println("Which element do you which to edit?");
-        System.out.println("[1] Name : " + activitylist.get(input).getName()
-                + "\n" + "[2] Equipment : " + activitylist.get(input).getEquipment()
-                + "\n" + "[3] Age : " + activitylist.get(input).getAgeRequirement()
-                + "\n" + "[4] Height : " + activitylist.get(input).getHeightRequirement()
+        System.out.println("[1] Name : " + activitylist.get(intInput).getName()
+                + "\n" + "[2] Equipment : " + activitylist.get(intInput).getEquipment()
+                + "\n" + "[3] Age : " + activitylist.get(intInput).getAgeRequirement()
+                + "\n" + "[4] Height : " + activitylist.get(intInput).getHeightRequirement()
                 + "\n");
 
-        int input2= 0;
-        input2 = scan.nextInt();
+        int intintput2= 0;
+        String input2 = scan.nextLine();
+        previousEditActivity(input2);
+        if (!input2.equalsIgnoreCase("Back")){
+            intintput2 = Integer.parseInt(input2);
+        }
 
-        if (input2 == 1)
+        if (intintput2 == 1)
         {
             System.out.println("What do you wish to change the activity name to?");
-            scan.nextLine();
-            activitylist.get(input).setName(scan.nextLine());
-            System.out.println(activitylist.get(input));
+            String input3 = scan.nextLine();
+            previousEditActivity(input3);
+            activitylist.get(intInput).setName(input3);
+            System.out.println(activitylist.get(intInput));
         }
-        else if (input2 == 2){
+        else if (intintput2 == 2){
             System.out.println("What do you wish to change the activity equipment requirement to?");
-            scan.nextLine();
-            activitylist.get(input).setEquipment(scan.nextLine());
-            System.out.println(activitylist.get(input));}
+            String input4 = scan.nextLine();
+            previousEditActivity(input4);
+            activitylist.get(intInput).setEquipment(input4);
+            System.out.println(activitylist.get(intInput));}
 
-        else if (input2 == 3){
+        else if (intintput2 == 3){
             System.out.println("What do you wish to change the activity age requirement to?");
+            int intInput5 = 0;
+            String input5 = scan.nextLine();
+            previousEditActivity(input5);
+            if (!input5.equalsIgnoreCase("Back")){
+                intInput5 = Integer.parseInt(input5);
+            }
+            activitylist.get(intInput).setAgeRequirement(intInput5);
+            System.out.println(activitylist.get(intInput));}
 
-            activitylist.get(input).setAgeRequirement(scan.nextInt());
-            scan.nextLine();
-            System.out.println(activitylist.get(input));}
-
-        else if (input2 == 4){
+        else if (intintput2 == 4){
             System.out.println("What do you wish to change the activity height requirement to?");
+            int intInput6 = 0;
+            String input6 = scan.nextLine();
+            previousEditActivity(input6);
+            if (!input6.equalsIgnoreCase("Back")){
+                intInput6 = Integer.parseInt(input6);
+            }
+            activitylist.get(intInput).setHeightRequirement(intInput6);
+            System.out.println(activitylist.get(intInput));}
 
-            activitylist.get(input).setHeightRequirement(scan.nextInt());
-            scan.nextLine();
-            System.out.println(activitylist.get(input));}
+        activityMenu();
 
     }
     //Edits an existing booking
@@ -212,7 +235,7 @@ public class Menu { // This class function as a controller
         isEditBackTriggered = false;
         input = scan.nextLine();
         int intInput = 0;
-        previousMenu(input);
+        previousBooking(input);
         if (!input.equalsIgnoreCase("Back")) {
             intInput = Integer.parseInt(input);
         }
@@ -227,7 +250,7 @@ public class Menu { // This class function as a controller
 
         int intInput2 = 0;
         String input2 = scan.nextLine();
-        previousBooking(input2);
+        previousEditBooking(input2);
         if (!input2.equalsIgnoreCase("Back")){
             intInput2 = Integer.parseInt(input2);
         }
@@ -240,7 +263,7 @@ public class Menu { // This class function as a controller
             }
             int intInput3 = 0;
             String input3 = scan.nextLine();
-            previousBooking(input3);
+            previousEditBooking(input3);
             if (!input3.equalsIgnoreCase("Back")){
                 intInput3 = Integer.parseInt(input3);
             }
@@ -254,7 +277,7 @@ public class Menu { // This class function as a controller
             System.out.println("How many participants do you wish to change to?");
             int intInput4 = 0;
             String input4 = scan.nextLine();
-            previousBooking(input4);
+            previousEditBooking(input4);
             if (!input4.equalsIgnoreCase("Back")){
                 intInput4 = Integer.parseInt(input4);
             }
@@ -265,11 +288,12 @@ public class Menu { // This class function as a controller
         else if (intInput2 == 3){
             System.out.println("What date and time do you wish to change to?");
             String input5 = scan.nextLine();
-            previousBooking(input5);
+            previousEditBooking(input5);
             bookingList.get(intInput).setDateTime(input5);
             System.out.println(bookingList.get(intInput));
 
             }
+        bookingMenu();
     }
     //Method for searching by instructor, and view their bookings
     public void searchByInstructor() {
@@ -291,8 +315,28 @@ public class Menu { // This class function as a controller
 
     }
 
+    //Method for going back to our activityMenu method
+    public void previousActivity(String string){
+
+        if (string.equalsIgnoreCase("Back")){
+            System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            activityMenu();
+        }
+
+    }
+    //Method for going back to our editActivity method
+    public void previousEditActivity(String string){
+
+        if (string.equalsIgnoreCase("Back")){
+            System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            isEditBackTriggered = true;
+            editActivity();
+        }
+
+    }
+
     //Method for going back to our bookingMenu method
-    public void previousMenu(String string){
+    public void previousBooking(String string){
 
         if (string.equalsIgnoreCase("Back")){
             System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
@@ -301,7 +345,7 @@ public class Menu { // This class function as a controller
 
     }
     //Method for going back to our editBooking method
-    public void previousBooking(String string){
+    public void previousEditBooking(String string){
 
         if (string.equalsIgnoreCase("Back")){
             System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
@@ -313,7 +357,7 @@ public class Menu { // This class function as a controller
     //Method for getting access to the booking menu
     public void bookingMenu(){
         int answer;
-        System.out.println("Press 0 to go back to previous menu\nPress 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking\n\nPRESS 9 TO EXIT PROGRAM\n");
+        System.out.println("Press 0 to go back to previous menu\nPress 1 to add a booking\nPress 2 to view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 to edit a booking\n\nPRESS 9 TO EXIT PROGRAM\n");
         answer = scan.nextInt();
 
         if(answer == 1){bookActivity();}
@@ -331,7 +375,24 @@ public class Menu { // This class function as a controller
         }else if (answer == 9){
             System.exit(1);
         }
+    }
 
+    public void activityMenu(){
+        int answer;
+        System.out.println("Press 0 to go back to previous menu\nPress 1 to edit activities\nPress 2 to view activities\n\nPRESS 9 TO EXIT PROGRAM\n");
+        answer = scan.nextInt();
+
+        if (answer == 1){
+            editActivity();
+        }else if (answer == 2){
+            System.out.printf("%-25s %-25s %-25s %-25s %-25s", "Name", "Date", "Equipment", "Age requirement", "Height requirement\n");
+            outputActivity();
+            activityMenu();
+        }else if (answer == 0){
+            menu();
+        }else if (answer == 9){
+            System.exit(1);
+        }
     }
 
     public void searchByDate(){
