@@ -86,9 +86,12 @@ public class Menu { // This class function as a controller
     //Adds a new activity, based on following input, to the already existing list of activities
     public void bookActivity () {
         System.out.println("Type name of activity");
-        scan.nextLine();
+        if (isEditBackTriggered == false){
+            scan.nextLine();
+        }
         String name = scan.nextLine();
         previousBooking(name);
+        isEditBackTriggered = false;
         System.out.println("When is the booking for? (YYYY)");
         String dateTime = scan.nextLine();
         previousBooking(dateTime);
@@ -300,8 +303,8 @@ public class Menu { // This class function as a controller
 
         System.out.println("Which instructor would you like to see the current bookings for?");
         String tempAnswer = null;
-
         tempAnswer = scan.nextLine();
+
 
         //Loops through the bookingList
         for (int i = 0; i < bookingList.size(); i++){
@@ -340,6 +343,7 @@ public class Menu { // This class function as a controller
 
         if (string.equalsIgnoreCase("Back")){
             System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            isEditBackTriggered = true;
             bookingMenu();
         }
 
@@ -354,6 +358,29 @@ public class Menu { // This class function as a controller
         }
 
     }
+
+    //Method for going back to our menu method
+    public void previousCalender(String string){
+
+        if (string.equalsIgnoreCase("Back")){
+            System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            menu();
+        }
+
+    }
+
+    //Method for going back to our SearchByDate method
+    public void previousEditCalender(String string){
+
+        if (string.equalsIgnoreCase("Back")){
+            System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            isEditBackTriggered = true;
+            searchByDate();
+        }
+
+    }
+
+
     //Method for getting access to the booking menu
     public void bookingMenu(){
         int answer;
@@ -398,15 +425,25 @@ public class Menu { // This class function as a controller
     public void searchByDate(){
         System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year\n\nPRESS 9 TO EXIT PROGRAM\n");
 
-        int input = 0;
-        input = scan.nextInt();
-        scan.nextLine();
 
-        if (input == 1){
+        int intinput = 0;
+        if (isEditBackTriggered == false){
+            scan.nextLine();
+        }
+        isEditBackTriggered = false;
+        String input = scan.nextLine();
+        previousCalender(input);
+        if (!input.equalsIgnoreCase("Back")){
+            intinput = Integer.parseInt(input);
+        }
+
+        if (intinput == 1){
             System.out.println("Enter date (DD/MM/YYYY");
 
             String stringA= null; //saves the input information so that its possible to compare
             stringA=scan.nextLine();
+            previousEditCalender(stringA);
+
 
 
             System.out.println("---------------------------- Calendar Date" + " " + stringA + " ----------------------------");
@@ -419,12 +456,13 @@ public class Menu { // This class function as a controller
             }
         }
 
-        else if (input==2){
+        else if (intinput==2){
 
             System.out.println("Enter month (MM)");
 
             String answer = null;
             answer = scan.nextLine();
+            previousEditCalender(answer);
 
             System.out.println("---------------------------- Calendar month" + " " + answer + " ----------------------------");
             for (int i = 0; i < bookingList.size(); i++){
@@ -436,11 +474,12 @@ public class Menu { // This class function as a controller
                 }
             }
         }
-        else if (input==3){
+        else if (intinput==3){
             System.out.println("Enter year (YYYY)");
 
             String answer = null;
             answer = scan.nextLine();
+            previousEditCalender(answer);
 
             System.out.println("---------------------------- Calendar year" + " " + answer + " ----------------------------");
             for (int i = 0; i < bookingList.size(); i++){
@@ -452,7 +491,7 @@ public class Menu { // This class function as a controller
 
                 }
             }
-        } else if (input == 9){
+        } else if (intinput == 9){
             System.exit(1);
         }
     }
