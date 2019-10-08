@@ -86,12 +86,9 @@ public class Menu { // This class function as a controller
     //Adds a new activity, based on following input, to the already existing list of activities
     public void bookActivity () {
         System.out.println("Type name of activity");
-        if (isEditBackTriggered == false){
-            scan.nextLine();
-        }
+        scan.nextLine();
         String name = scan.nextLine();
         previousBooking(name);
-        isEditBackTriggered = false;
         System.out.println("When is the booking for? (YYYY)");
         String dateTime = scan.nextLine();
         previousBooking(dateTime);
@@ -343,7 +340,6 @@ public class Menu { // This class function as a controller
 
         if (string.equalsIgnoreCase("Back")){
             System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
-            isEditBackTriggered = true;
             bookingMenu();
         }
 
