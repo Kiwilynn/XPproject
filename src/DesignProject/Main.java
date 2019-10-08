@@ -7,6 +7,7 @@ public class Main {
         Menu menu = new Menu();
         menu.addToList();
 
+        //menu.searchByDate();
         //menu.searchByInstructor();
         menu.menu();
 
