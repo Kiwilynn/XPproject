@@ -5,7 +5,7 @@ import java.util.*;
 public class Menu { // This class function as a controller
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
-    List<Activity> bookingList = new ArrayList<Activity>(); // Activity list
+    List<Activity> bookingList = new ArrayList<Activity>(); // Booking list
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
     private boolean isEditBackTriggered = false;
 
@@ -34,12 +34,12 @@ public class Menu { // This class function as a controller
         activitylist.add(new Activity("Minigolf", "25/09-19 - 12:30", "A good mood!", 70, 000));
         activitylist.add(new Activity("Paintball", "26/09-19 - 13:30", "Walking shoes", 16, 160));
         activitylist.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 5, employeeArray[0]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 2, employeeArray[1]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
-        bookingList.add(new Activity("Sumo wrestling", "27/09-19 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 5, employeeArray[0]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 2, employeeArray[1]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
+        bookingList.add(new Activity("Sumo wrestling", "27/09-1999 - 14:30", "Used clothes", 10, 160, 1500, employeeArray[2]));
 
     }
     //Menu
@@ -48,7 +48,7 @@ public class Menu { // This class function as a controller
 
         try {
             while (true) {
-                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \n");
+                System.out.println("Press 1 for Activities\nPress 2 for Employees\nPress 3 for Bookings \nPress 4 for calendar\n\nPRESS 9 TO EXIT PROGRAM\n");
                 answer = scan.nextInt();
                 while (true) {
                     if (answer == 1) {
@@ -56,7 +56,7 @@ public class Menu { // This class function as a controller
                         outputActivity();
                         break;
                     }
-                    if (answer == 2) {
+                    else if (answer == 2) {
                         System.out.println("List of Employees");
                         for (int e = 0; e <= employeeArray.length - 1; e++) {
                             System.out.println(employeeArray[e]);
@@ -65,9 +65,14 @@ public class Menu { // This class function as a controller
                         break;
 
                     }
-                    if (answer == 3) {
+                    else if (answer == 3) {
                         bookingMenu();
-                    } else {
+                    } else if (answer == 4){
+                        answer = 0;
+                        searchByDate();
+                    }else if (answer == 9){
+                        System.exit(1);
+                    }else {
                         menu();
                     }
                 }
@@ -85,7 +90,7 @@ public class Menu { // This class function as a controller
         scan.nextLine();
         String name = scan.nextLine();
         previousMenu(name);
-        System.out.println("When is the booking for?");
+        System.out.println("When is the booking for? (YYYY)");
         String dateTime = scan.nextLine();
         previousMenu(dateTime);
         System.out.println("What equipment is needed to bring?");
@@ -226,8 +231,6 @@ public class Menu { // This class function as a controller
         if (!input2.equalsIgnoreCase("Back")){
             intInput2 = Integer.parseInt(input2);
         }
-
-
         if (intInput2 == 1) {
 
             System.out.println("Which instructor do you wish to assign this booking?");
@@ -287,6 +290,7 @@ public class Menu { // This class function as a controller
         }
 
     }
+
     //Method for going back to our bookingMenu method
     public void previousMenu(String string){
 
@@ -309,7 +313,7 @@ public class Menu { // This class function as a controller
     //Method for getting access to the booking menu
     public void bookingMenu(){
         int answer;
-        System.out.println("Press 0 to go back to previous menu\nPress 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking");
+        System.out.println("Press 0 to go back to previous menu\nPress 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking\n\nPRESS 9 TO EXIT PROGRAM\n");
         answer = scan.nextInt();
 
         if(answer == 1){bookActivity();}
@@ -324,8 +328,72 @@ public class Menu { // This class function as a controller
         else if (answer == 5) {editBooking();}
         else if (answer == 0){
             menu();
+        }else if (answer == 9){
+            System.exit(1);
         }
 
+    }
+
+    public void searchByDate(){
+        System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year\n\nPRESS 9 TO EXIT PROGRAM\n");
+
+        int input = 0;
+        input = scan.nextInt();
+        scan.nextLine();
+
+        if (input == 1){
+            System.out.println("Enter date (DD/MM/YYYY");
+
+            String stringA= null; //saves the input information so that its possible to compare
+            stringA=scan.nextLine();
+
+
+            System.out.println("---------------------------- Calendar Date" + " " + stringA + " ----------------------------");
+            for (int i = 0; i < bookingList.size(); i++){
+
+                if (stringA.equalsIgnoreCase(bookingList.get(i).getDateTime())){
+                    System.out.println(bookingList.get(i));
+                }
+
+            }
+        }
+
+        else if (input==2){
+
+            System.out.println("Enter month (MM)");
+
+            String answer = null;
+            answer = scan.nextLine();
+
+            System.out.println("---------------------------- Calendar month" + " " + answer + " ----------------------------");
+            for (int i = 0; i < bookingList.size(); i++){
+
+                String Temp1 = bookingList.get(i).getDateTime().substring(3, 5);
+
+                if (answer.equals(Temp1)){
+                    System.out.println(bookingList.get(i));
+                }
+            }
+        }
+        else if (input==3){
+            System.out.println("Enter year (YYYY)");
+
+            String answer = null;
+            answer = scan.nextLine();
+
+            System.out.println("---------------------------- Calendar year" + " " + answer + " ----------------------------");
+            for (int i = 0; i < bookingList.size(); i++){
+
+                String Temp1 = bookingList.get(i).getDateTime().substring(6, 10);
+
+                if (answer.equals(Temp1)){
+                    System.out.println(bookingList.get(i));
+
+                }
+            }
+        } else if (input == 9){
+            System.exit(1);
+        }
     }
 
 }
