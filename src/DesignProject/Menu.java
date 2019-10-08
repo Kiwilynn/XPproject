@@ -281,7 +281,7 @@ public class Menu { // This class function as a controller
 
     }
     public void searchByDate(){
-        System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year");
+        System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year\n\nPRESS 9 TO EXIT PROGRAM\n");
 
         int input = 0;
         input = scan.nextInt();
@@ -337,6 +337,8 @@ public class Menu { // This class function as a controller
 
                 }
             }
+        } else if (input == 9){
+            System.exit(1);
         }
     }
 
