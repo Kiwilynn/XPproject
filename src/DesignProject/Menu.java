@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Menu { // This class function as a controller
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
-    Employee em = new Employee("Torben");
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
     List<Activity> bookingList = new ArrayList<Activity>(); // Activity list
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
+    private boolean isEditBackTriggered = false;
 
 
     public void outputActivity() {
@@ -66,21 +66,7 @@ public class Menu { // This class function as a controller
 
                     }
                     if (answer == 3) {
-                        System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking");
-                        answer = scan.nextInt();
-
-                        if(answer == 1){bookActivity();}
-                        else if (answer == 2){
-                            System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
-                            outputBooking();
-                        }
-                        else if (answer == 3){
-                            scan.nextLine();
-                            searchByInstructor();}
-                        else if (answer == 4) {cancelBooking();}
-                        else if (answer == 5) {editBooking();}
-                        else {break;}
-                        break;
+                        bookingMenu();
                     } else {
                         menu();
                     }
@@ -98,38 +84,55 @@ public class Menu { // This class function as a controller
         System.out.println("Type name of activity");
         scan.nextLine();
         String name = scan.nextLine();
+        previousMenu(name);
         System.out.println("When is the booking for?");
         String dateTime = scan.nextLine();
+        previousMenu(dateTime);
         System.out.println("What equipment is needed to bring?");
         String equipment = scan.nextLine();
+        previousMenu(equipment);
         System.out.println("What is the age req?");
-        int ageReq = scan.nextInt();
+        String ageReq = scan.nextLine();
+        previousMenu(ageReq);
         System.out.println("What is the height req?");
-        int heightReq = scan.nextInt();
+        String heightReq = scan.nextLine();
+        previousMenu(heightReq);
         System.out.println("How many participants?");
-        int participants = scan.nextInt();
+        String participants = scan.nextLine();
+        previousMenu(participants);
         System.out.println("Which instructor will be assigned?");
        for (int i = 0; i < employeeArray.length; i++){
            System.out.println("[" + i + "] " + employeeArray[i]);
        }
         int input = scan.nextInt();
 
-        bookingList.add(new Activity(name, dateTime, equipment, ageReq, heightReq, participants, employeeArray[input]));
+       int intAge = Integer.parseInt(ageReq);
+       int intHeight = Integer.parseInt(heightReq);
+       int intParticipants = Integer.parseInt(participants);
+
+        bookingList.add(new Activity(name, dateTime, equipment, intAge, intHeight, intParticipants, employeeArray[input]));
 
     }
 
     //Cancels a booking based on index number
     public void cancelBooking() {
-        int input;
+        String input = "";
         for (int i = 0; i <bookingList.size(); i++) {
             System.out.println("[" + i + "] " + bookingList.get(i));
         }
         System.out.println();
         System.out.println("Choose what activity to delete by entering number: ");
-        input = scan.nextInt();
+        scan.nextLine();
+        input = scan.nextLine();
+        previousMenu(input);
         System.out.println("This booking has been cancelled:");
-        System.out.println(bookingList.get(input) + "\n");
-        bookingList.remove(input);
+
+        //Checks string input, to make sure it's not equal to 'Back'
+        if (!input.equalsIgnoreCase("Back")){
+            int intInput = Integer.parseInt(input);
+            System.out.println(bookingList.get(intInput) + "\n");
+            bookingList.remove(intInput);
+        }
 
     }
     //Edits an existing activity
@@ -188,7 +191,7 @@ public class Menu { // This class function as a controller
     //Edits an existing booking
     public void editBooking() {
 
-        int input;
+        String input;
         System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name of activity", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
 
         for (int i = 0; i < bookingList.size(); i++) {
@@ -196,50 +199,72 @@ public class Menu { // This class function as a controller
         }
 
         System.out.println("Choose which booking you want to edit");
-        input = scan.nextInt();
+        //If our previousBooking method has been triggered
+        if (isEditBackTriggered == false){
+            scan.nextLine();
+        }
+        //Resets our isEditBackTriggered boolean
+        isEditBackTriggered = false;
+        input = scan.nextLine();
+        int intInput = 0;
+        previousMenu(input);
+        if (!input.equalsIgnoreCase("Back")) {
+            intInput = Integer.parseInt(input);
+        }
 
         //Shows menu for edit options
-        System.out.println("You have chosen to edit : " + bookingList.get(input).getName());
+        System.out.println("You have chosen to edit : " + bookingList.get(intInput).getName());
         System.out.println("Which element do you which to edit?");
-        System.out.println("[1] Instructor : " + bookingList.get(input).getEmployee()
-                + "\n" + "[2] Participants : " + bookingList.get(input).getParticipants()
-                + "\n" + "[3] Date & time : " + bookingList.get(input).getDateTime()
+        System.out.println("[1] Instructor : " + bookingList.get(intInput).getEmployee()
+                + "\n" + "[2] Participants : " + bookingList.get(intInput).getParticipants()
+                + "\n" + "[3] Date & time : " + bookingList.get(intInput).getDateTime()
                 + "\n");
 
-        int input2= 0;
-        input2 = scan.nextInt();
+        int intInput2 = 0;
+        String input2 = scan.nextLine();
+        previousBooking(input2);
+        if (!input2.equalsIgnoreCase("Back")){
+            intInput2 = Integer.parseInt(input2);
+        }
 
-        if (input2 == 1) {
 
-            int input3 = 0;
+        if (intInput2 == 1) {
 
             System.out.println("Which instructor do you wish to assign this booking?");
 
             for(int i = 0; i < employeeArray.length; i++){
                 System.out.println("[" + i + "]" + employeeArray[i]);
             }
+            int intInput3 = 0;
+            String input3 = scan.nextLine();
+            previousBooking(input3);
+            if (!input3.equalsIgnoreCase("Back")){
+                intInput3 = Integer.parseInt(input3);
+            }
 
-            input3 = scan.nextInt();
-
-            bookingList.get(input).setEmployee(employeeArray[input3]);
+            bookingList.get(intInput).setEmployee(employeeArray[intInput3]);
             System.out.println();
-            scan.nextLine();
 
         }
 
-        else if (input2 == 2){
+        else if (intInput2 == 2){
             System.out.println("How many participants do you wish to change to?");
-            scan.nextLine();
-            bookingList.get(input).setParticipants(scan.nextInt());
-            System.out.println(bookingList.get(input));
-            scan.nextLine();
+            int intInput4 = 0;
+            String input4 = scan.nextLine();
+            previousBooking(input4);
+            if (!input4.equalsIgnoreCase("Back")){
+                intInput4 = Integer.parseInt(input4);
+            }
+            bookingList.get(intInput).setParticipants(intInput4);
+            System.out.println(bookingList.get(intInput));
         }
 
-        else if (input2 == 3){
+        else if (intInput2 == 3){
             System.out.println("What date and time do you wish to change to?");
-            scan.nextLine();
-            bookingList.get(input).setDateTime(scan.nextLine());
-            System.out.println(bookingList.get(input));
+            String input5 = scan.nextLine();
+            previousBooking(input5);
+            bookingList.get(intInput).setDateTime(input5);
+            System.out.println(bookingList.get(intInput));
 
             }
     }
@@ -259,6 +284,46 @@ public class Menu { // This class function as a controller
                 System.out.printf("%-25s %-10s", bookingList.get(i).getName(), bookingList.get(i).getDateTime()+ "\n");
             }
 
+        }
+
+    }
+    //Method for going back to our bookingMenu method
+    public void previousMenu(String string){
+
+        if (string.equalsIgnoreCase("Back")){
+            System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            bookingMenu();
+        }
+
+    }
+    //Method for going back to our editBooking method
+    public void previousBooking(String string){
+
+        if (string.equalsIgnoreCase("Back")){
+            System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            isEditBackTriggered = true;
+            editBooking();
+        }
+
+    }
+    //Method for getting access to the booking menu
+    public void bookingMenu(){
+        int answer;
+        System.out.println("Press 0 to go back to previous menu\nPress 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking");
+        answer = scan.nextInt();
+
+        if(answer == 1){bookActivity();}
+        else if (answer == 2){
+            System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-10s", "Name", "Date", "Equipment", "Age requirement", "Height requirement", "Participants", "Instructor\n");
+            outputBooking();
+        }
+        else if (answer == 3){
+            scan.nextLine();
+            searchByInstructor();}
+        else if (answer == 4) {cancelBooking();}
+        else if (answer == 5) {editBooking();}
+        else if (answer == 0){
+            menu();
         }
 
     }
