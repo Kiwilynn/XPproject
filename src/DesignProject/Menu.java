@@ -112,7 +112,7 @@ public class Menu { // This class function as a controller
         System.out.println("Type name of activity");
         scan.nextLine();
         String name = scan.nextLine();
-        System.out.println("When is the booking for?");
+        System.out.println("When is the booking for? (YYYY)");
         String dateTime = scan.nextLine();
         System.out.println("What equipment is needed to bring?");
         String equipment = scan.nextLine();
