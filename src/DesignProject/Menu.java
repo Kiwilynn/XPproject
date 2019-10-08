@@ -6,7 +6,7 @@ public class Menu { // This class function as a controller.
     Scanner scan = new Scanner(System.in); // this scanner is used in the menu
     Employee em = new Employee("Torben");
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
-    List<Activity> bookingList = new ArrayList<Activity>(); // Activity list
+    List<Activity> bookingList = new ArrayList<Activity>(); // Booking list
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
 
 
@@ -60,10 +60,8 @@ public class Menu { // This class function as a controller.
                         System.out.println("List of Employees");
                         for (int e = 0; e <= employeeArray.length - 1; e++) {
                             System.out.println(employeeArray[e]);
-
                         }
                         break;
-
                     }
                     else if (answer == 3) {
                         System.out.println("Press 1 for add a booking\nPress 2 for view bookings\nPress 3 to search by instructor\nPress 4 for cancel a booking\nPress 5 for edit a booking\n\nPRESS 9 TO EXIT PROGRAM\n");
