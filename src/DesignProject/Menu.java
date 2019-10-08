@@ -419,7 +419,7 @@ public class Menu { // This class function as a controller
     }
 
     public void searchByDate(){
-        System.out.println("Do you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year\n\nPRESS 9 TO EXIT PROGRAM\n");
+        System.out.println("Press 0 to go back to previous menu\nDo you wish to see a calender by\n1: Specific day \n2: Specific month \n3: Specific year\n\nPRESS 9 TO EXIT PROGRAM\n");
 
 
         int intinput = 0;
