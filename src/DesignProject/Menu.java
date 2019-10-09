@@ -7,7 +7,7 @@ public class Menu { // This class function as a controller
     List<Activity> activitylist = new ArrayList<Activity>(); // Activity list
     List<Activity> bookingList = new ArrayList<Activity>(); // Booking list
     Employee[] employeeArray = new Employee[5]; //creates an array of employee object, so that we can see all employees
-    private boolean isEditBackTriggered = false;
+    private boolean isEditBackTriggered = false, stopActivity = false;
 
 
     public void outputActivity() {
@@ -85,25 +85,32 @@ public class Menu { // This class function as a controller
     }
     //Adds a new activity, based on following input, to the already existing list of activities
     public void bookActivity () {
+        stopActivity = false;
         System.out.println("Type name of activity");
         scan.nextLine();
         String name = scan.nextLine();
         previousBooking(name);
+        if (stopActivity) {return;}
         System.out.println("When is the booking for? (YYYY)");
         String dateTime = scan.nextLine();
         previousBooking(dateTime);
+        if (stopActivity) {return;}
         System.out.println("What equipment is needed to bring?");
         String equipment = scan.nextLine();
         previousBooking(equipment);
+        if (stopActivity) {return;}
         System.out.println("What is the age req?");
         String ageReq = scan.nextLine();
         previousBooking(ageReq);
+        if (stopActivity) {return;}
         System.out.println("What is the height req?");
         String heightReq = scan.nextLine();
         previousBooking(heightReq);
+        if (stopActivity) {return;}
         System.out.println("How many participants?");
         String participants = scan.nextLine();
         previousBooking(participants);
+        if (stopActivity) {return;}
         System.out.println("Which instructor will be assigned?");
        for (int i = 0; i < employeeArray.length; i++){
            System.out.println("[" + i + "] " + employeeArray[i]);
@@ -340,6 +347,7 @@ public class Menu { // This class function as a controller
 
         if (string.equalsIgnoreCase("Back")){
             System.out.println("You typed keyword 'Back', you've been redirected to previous menu\n");
+            stopActivity = true;
             bookingMenu();
         }
 
